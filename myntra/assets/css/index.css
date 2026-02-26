@@ -1,0 +1,106 @@
+* {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+    font-family: Figtree-Regular, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+}
+
+/* header section */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 60px;
+    width: 100vw;
+    box-shadow: 5px 0px 10px rgba(148, 146, 146, 0.5);
+    background-color: #fff;
+}
+
+.logo-container {
+    margin-left: 5%;
+}
+
+.logo-container img {
+    width: 55px;
+}
+
+.navbar-container {
+    height: 70%;
+    width: 40%;
+    min-width: 500px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navbar-container a {
+    color: #282c3f;
+    text-decoration: none;
+    font-size: 15px;
+    letter-spacing: 0.5px;
+    font-weight: 700;
+    text-transform: uppercase;
+    padding: 20px 0px;
+    border-bottom: 3px solid #fff;
+}
+
+.navbar-container a:hover {
+    border-bottom: 3px solid #ff3f6c;
+}
+
+.navbar-container a sup {
+    color: #ff3f6c;
+    margin-left: 2px;
+}
+
+.serach-container {
+    background-color: #f5f5f6;
+    height: 50%;
+    min-width: 300px;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+}
+
+.serach-container i {
+    margin: 5px;
+}
+
+.serach-container input {
+    border: 0px;
+    flex-grow: 1;
+    height: 100%;
+    border-radius: 0px 5px 5px 0px;
+    background-color: #f5f5f6;
+    color: #696e79;
+    font-size: 14px;
+}
+
+.action-container {
+    margin-right: 5%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    min-width: 150px;
+    height: 100%;
+}
+
+.action-container a {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none;
+    color: #000000;
+    font-size: 12px;
+}
+
+.action-container a i {
+    font-size: 18px;
+    margin-bottom: 6px;
+}
+
+.action-container a b {
+    font-weight: 700;
+}
+
+/* header section end */
