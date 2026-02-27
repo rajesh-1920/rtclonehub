@@ -5,6 +5,12 @@
     font-family: Figtree-Regular, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
 }
 
+html,
+body {
+    overflow-x: hidden;
+    width: 100%;
+}
+
 /* header section */
 header {
     display: flex;
