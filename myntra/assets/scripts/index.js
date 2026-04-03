@@ -1,23 +1,10 @@
 let itemContainer = document.querySelector(".items-container");
 
-const item = {
-  item_image: "banner.jpg",
-  rating: {
-    stars: 4.5,
-    reviews: 14000,
-  },
-  company_name: "carlton london",
-  item_name: "routed plated CZ florda",
-  item_price: {
-    current_price: 600,
-    original_price: 1045,
-    discount: 42,
-  },
-};
-
-itemContainer.innerHTML = `
+let innerHtml = ``;
+for (let item of items) {
+  innerHtml += `
         <div class="item-container">
-          <img class="item-image" src="./assets/images/${item.item_image}" alt="item image" />
+          <img class="item-image" src="./assets/images/items/${item.item_image}" alt="item image" />
           <div class="item-ratings">${item.rating.stars} ⭐ |${item.rating.reviews}K</div>
           <div class="item-company-name">${item.company_name}</div>
           <div class="item-name">${item.item_name}</div>
@@ -29,3 +16,6 @@ itemContainer.innerHTML = `
           <button class="btn-add-to-bag">Add to Bag</button>
         </div>
 `;
+}
+
+itemContainer.innerHTML = innerHtml;
