@@ -28,6 +28,7 @@ header {
   width: 100%;
   box-shadow: 5px 0px 10px rgba(148, 146, 146, 0.5);
   background-color: #fff;
+  position: fixed;
 }
 
 .logo-container {
@@ -99,7 +100,9 @@ header {
   height: 100%;
 }
 
-.action-container a {
+.profile-action,
+.wishlist-action,
+.bag-action {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -108,13 +111,33 @@ header {
   font-size: 12px;
 }
 
-.action-container a i {
+.action-icon {
   font-size: 18px;
   margin-bottom: 6px;
 }
 
-.action-container a b {
+.action-name {
   font-weight: 700;
+}
+
+.bag-item-count {
+  background-color: #f16565;
+  text-align: center;
+  white-space: nowrap;
+  line-height: 18px;
+  height: 18px;
+  padding: 0px 6px;
+  border-radius: 50%;
+  position: relative;
+  font-size: 12px;
+  color: #fff;
+  left: 15px;
+  top: -45px;
+  cursor: pointer;
+}
+
+.bag-action{
+  margin-top: 15px;
 }
 
 /* header section end */
@@ -200,6 +223,7 @@ header {
   border: none;
   padding: 5px 15px;
   border-radius: 10px;
+  cursor: pointer;
 }
 
 /* main section end */

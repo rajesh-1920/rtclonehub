@@ -1,8 +1,35 @@
-let itemContainer = document.querySelector(".items-container");
+let bagItems;
 
-let innerHtml = ``;
-for (let item of items) {
-  innerHtml += `
+(() => {
+  let bagItemStr = localStorage.getItem(`bagItems`);
+  bagItems = bagItemStr ? JSON.parse(bagItemStr) : [];
+  dispalyHomepageContent();
+  displayBagItemCount();
+})();
+
+function addToBag(productId) {
+  bagItems.push(productId);
+  displayBagItemCount();
+  localStorage.setItem(`bagItems`, JSON.stringify(bagItems));
+}
+
+function displayBagItemCount() {
+  let bagItemCountIcon = document.querySelector(`.bag-item-count`);
+  bagItemCountIcon.innerText = bagItems.length;
+  if (bagItems.length) {
+    bagItemCountIcon.style.visibility = "visible";
+  } else {
+    bagItemCountIcon.style.visibility = "hidden";
+  }
+}
+
+function dispalyHomepageContent() {
+  let itemContainer = document.querySelector(".items-container");
+  let innerHtml = ``;
+  let id = 1;
+  for (let item of items) {
+    item.productId = id;
+    innerHtml += `
         <div class="item-container">
           <img class="item-image" src="./assets/images/items/${item.item_image}" alt="item image" />
           <div class="item-ratings">${item.rating.stars} ⭐ |${item.rating.reviews}K</div>
@@ -13,9 +40,10 @@ for (let item of items) {
             <span class="original-price">RS ${item.item_price.original_price}</span>
             <span class="discount">(${item.item_price.discount}% OFF)</span>
           </div>
-          <button class="btn-add-to-bag">Add to Bag</button>
+          <button class="btn-add-to-bag" onclick="addToBag(${item.productId})">Add to Bag</button>
         </div>
-`;
+    `;
+    id++;
+  }
+  itemContainer.innerHTML = innerHtml;
 }
-
-itemContainer.innerHTML = innerHtml;
