@@ -3,7 +3,8 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="./assets/css/index.css" />
+    <link rel="stylesheet" href="../assets/css/index.css" />
+    <link rel="stylesheet" href="../assets/css/bag.css" />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
@@ -11,14 +12,14 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
-    <title>homepage</title>
+    <title>bags</title>
   </head>
 
   <body>
     <!-- header section -->
     <header>
-      <a class="logo-container" href="#">
-        <img src="./assets/images/myntra_logo.webp" alt="myntra-logo" />
+      <a class="logo-container" href="../index.html">
+        <img src="../assets/images/myntra_logo.webp" alt="myntra-logo" />
       </a>
       <nav class="navbar-container">
         <a href="#">men</a>
@@ -33,7 +34,7 @@
         <i class="fa-solid fa-magnifying-glass"></i>
         <input type="text" placeholder="Search for products, brands and more" />
       </div>
-      
+
       <div class="action-container">
         <a class="profile-action" href="#">
           <span class="fa-regular fa-circle-user action-icon"></span>
@@ -45,7 +46,7 @@
           <span class="action-name">Wishlist</span>
         </a>
 
-        <a class="bag-action" href="./pages/bag.html">
+        <a class="bag-action" href="#">
           <span class="fa-solid fa-bag-shopping action-icon"></span>
           <span class="action-name">Bag</span>
           <span class="bag-item-count">0</span>
@@ -54,10 +55,30 @@
     </header>
     <!-- main section -->
     <main>
-      <div class="hero-container">
-        <img src="./assets/images/banner.jpg" alt="banner-image" />
+      <div class="bag-page">
+        <div class="bag-items-container">
+          <div class="bag-item-container">
+            <div class="bag-item-left-part">
+              <img class="bag-item-image" src="../assets/images/banner.jpg" alt="bag-itemimages" />
+            </div>
+            <!-- right part -->
+            <div class="bag-item-right-part">
+              <div class="item-company-name">Addidas</div>
+              <div class="item-name">T-shirt</div>
+              <div class="item-price">
+                <span class="current-price">RS 500</span>
+                <span class="original-price">RS 1000</span>
+                <span class="discount">(50% OFF)</span>
+              </div>
+              <div class="return-period">14 days return available</div>
+              <div class="delivery-details">Delivery by 13 Apr 2026</div>
+            </div>
+            <!-- remove part -->
+            <div class="remove-from-cart">X</div>
+          </div>
+          <div class="bag-summary">summary</div>
+        </div>
       </div>
-      <div class="items-container"></div>
     </main>
     <!-- footer section -->
     <footer>
@@ -102,7 +123,8 @@
         <i class="fa-brands fa-linkedin"></i>
       </div>
     </footer>
-    <script src="./assets/data/data.js"></script>
-    <script src="./assets/scripts/index.js"></script>
+    <script src="../assets/data/data.js"></script>
+    <script src="../assets/scripts/index.js"></script>
+    <script src="../assets/scripts/bag.js"></script>
   </body>
 </html>

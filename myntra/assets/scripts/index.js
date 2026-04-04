@@ -3,8 +3,8 @@ let bagItems;
 (() => {
   let bagItemStr = localStorage.getItem(`bagItems`);
   bagItems = bagItemStr ? JSON.parse(bagItemStr) : [];
-  dispalyHomepageContent();
   displayBagItemCount();
+  dispalyHomepageContent();
 })();
 
 function addToBag(productId) {
@@ -15,8 +15,8 @@ function addToBag(productId) {
 
 function displayBagItemCount() {
   let bagItemCountIcon = document.querySelector(`.bag-item-count`);
-  bagItemCountIcon.innerText = bagItems.length;
   if (bagItems.length) {
+    bagItemCountIcon.innerText = bagItems.length;
     bagItemCountIcon.style.visibility = "visible";
   } else {
     bagItemCountIcon.style.visibility = "hidden";
@@ -25,6 +25,9 @@ function displayBagItemCount() {
 
 function dispalyHomepageContent() {
   let itemContainer = document.querySelector(".items-container");
+  if (!itemContainer) {
+    return;
+  }
   let innerHtml = ``;
   let id = 1;
   for (let item of items) {
