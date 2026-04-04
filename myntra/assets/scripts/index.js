@@ -37,8 +37,8 @@ function dispalyHomepageContent() {
           <div class="item-company-name">${item.company_name}</div>
           <div class="item-name">${item.item_name}</div>
           <div class="item-price">
-            <span class="current-price">RS ${item.item_price.current_price}</span>
-            <span class="original-price">RS ${item.item_price.original_price}</span>
+            <span class="current-price">Rs${item.item_price.current_price}</span>
+            <span class="original-price">Rs${item.item_price.original_price}</span>
             <span class="discount">(${item.item_price.discount}% OFF)</span>
           </div>
           <button class="btn-add-to-bag" onclick="addToBag(${item.productId})">Add to Bag</button>

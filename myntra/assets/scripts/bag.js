@@ -3,7 +3,52 @@ let bagItemObjects;
 (() => {
   loadBagItemObjects();
   displayBagItem();
+  displayBagSummary();
 })();
+
+function displayBagSummary() {
+  let bagSummaryElement = document.querySelector(`.bag-summary`);
+  let totalItems = bagItems.length;
+  let totalMRP = 0;
+  let totalDiscount = 0;
+  let convenienceFee = 99;
+  let totalAmount = 0;
+
+  for (let item of bagItemObjects) {
+    totalMRP += item.item_price.original_price;
+    totalAmount += item.item_price.current_price;
+    totalDiscount += item.item_price.original_price - item.item_price.current_price;
+  }
+  totalAmount += convenienceFee;
+
+  let bagSummaryInnerHtml = `
+          <div class="bag-details-container">
+            <div class="price-header">PRICE DETEAILS (${totalItems} Items)</div>
+            <div class="price-item">
+              <span class="price-item-tag">Total MRP</span>
+              <span class="price-item-value">Rs${totalMRP}</span>
+            </div>
+            <div class="price-item">
+              <span class="price-item-tag">Discount on MRP</span>
+              <span class="price-item-value discount-value">Rs${totalDiscount}</span>
+            </div>
+            <div class="price-item">
+              <span class="price-item-tag">convenience Fee</span>
+              <span class="price-item-value">Rs${convenienceFee}</span>
+            </div>
+            <hr />
+            <div class="price-item price-footer">
+              <span class="price-item-tag">Total Amount</span>
+              <span class="price-item-value">Rs${totalAmount}</span>
+            </div>
+          </div>
+          <button class="btn-place-order">
+            <div class="css-xjhrni">PLACE ORDER</div>
+          </button>
+  `;
+
+  bagSummaryElement.innerHTML = bagSummaryInnerHtml;
+}
 
 function loadBagItemObjects() {
   bagItemObjects = bagItems.map((productId) => {
@@ -21,6 +66,7 @@ function removeFromBag(productId) {
   localStorage.setItem(`bagItems`, JSON.stringify(bagItems));
   loadBagItemObjects();
   displayBagItemCount();
+  displayBagSummary();
   displayBagItem();
 }
 
@@ -37,8 +83,8 @@ function displayBagItem() {
               <div class="item-company-name">${item.company_name}</div>
               <div class="item-name">${item.item_name}</div>
               <div class="item-price">
-                <span class="current-price">RS ${item.item_price.current_price}</span>
-                <span class="original-price">RS ${item.item_price.original_price}</span>
+                <span class="current-price">Rs${item.item_price.current_price}</span>
+                <span class="original-price">Rs${item.item_price.original_price}</span>
                 <span class="discount">(${item.item_price.discount}% OFF)</span>
               </div>
               <div class="return-period">14 days return available</div>
