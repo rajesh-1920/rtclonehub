@@ -6,7 +6,7 @@ const products = [
     title: "Men Solid Cotton T-Shirt",
     category: "men",
     rating: { value: 4.2, count: 2874 },
-    price: { current: 599, mrp: 999 },
+    price: { original: 999, discountPercent: 40 },
   },
   {
     id: 2,
@@ -15,7 +15,7 @@ const products = [
     title: "Active Running Shoes",
     category: "men",
     rating: { value: 4.4, count: 1432 },
-    price: { current: 1299, mrp: 2599 },
+    price: { original: 2599, discountPercent: 50 },
   },
   {
     id: 3,
@@ -24,7 +24,7 @@ const products = [
     title: "Slim Fit Checked Shirt",
     category: "men",
     rating: { value: 4.0, count: 819 },
-    price: { current: 749, mrp: 1499 },
+    price: { original: 1499, discountPercent: 50 },
   },
   {
     id: 4,
@@ -33,7 +33,7 @@ const products = [
     title: "Men Washed Denim Jeans",
     category: "men",
     rating: { value: 4.1, count: 1205 },
-    price: { current: 1399, mrp: 2799 },
+    price: { original: 2799, discountPercent: 50 },
   },
   {
     id: 5,
@@ -42,7 +42,7 @@ const products = [
     title: "Polo Collar T-Shirt",
     category: "men",
     rating: { value: 4.3, count: 964 },
-    price: { current: 899, mrp: 1799 },
+    price: { original: 1799, discountPercent: 50 },
   },
   {
     id: 6,
@@ -51,7 +51,7 @@ const products = [
     title: "Classic Straight Jeans",
     category: "men",
     rating: { value: 4.5, count: 2211 },
-    price: { current: 2199, mrp: 3999 },
+    price: { original: 3999, discountPercent: 45 },
   },
   {
     id: 7,
@@ -60,7 +60,7 @@ const products = [
     title: "Printed Kurta with Trousers",
     category: "women",
     rating: { value: 4.3, count: 3012 },
-    price: { current: 1199, mrp: 2399 },
+    price: { original: 2399, discountPercent: 50 },
   },
   {
     id: 8,
@@ -69,7 +69,7 @@ const products = [
     title: "Ethnic Motif Kurta Set",
     category: "women",
     rating: { value: 4.1, count: 1568 },
-    price: { current: 1099, mrp: 2199 },
+    price: { original: 2199, discountPercent: 50 },
   },
   {
     id: 9,
@@ -78,7 +78,7 @@ const products = [
     title: "Women Solid Casual Top",
     category: "women",
     rating: { value: 4.0, count: 735 },
-    price: { current: 649, mrp: 1299 },
+    price: { original: 1299, discountPercent: 50 },
   },
   {
     id: 10,
@@ -87,7 +87,7 @@ const products = [
     title: "A-Line Mini Dress",
     category: "women",
     rating: { value: 4.2, count: 882 },
-    price: { current: 999, mrp: 1999 },
+    price: { original: 1999, discountPercent: 50 },
   },
   {
     id: 11,
@@ -96,7 +96,7 @@ const products = [
     title: "Embroidered Kurta Set",
     category: "women",
     rating: { value: 4.4, count: 1107 },
-    price: { current: 1899, mrp: 3799 },
+    price: { original: 3799, discountPercent: 50 },
   },
   {
     id: 12,
@@ -105,7 +105,7 @@ const products = [
     title: "Floral Printed Anarkali",
     category: "women",
     rating: { value: 4.1, count: 642 },
-    price: { current: 1299, mrp: 2599 },
+    price: { original: 2599, discountPercent: 50 },
   },
   {
     id: 13,
@@ -114,7 +114,7 @@ const products = [
     title: "Kids Sport Shoes",
     category: "kids",
     rating: { value: 4.5, count: 521 },
-    price: { current: 1499, mrp: 2999 },
+    price: { original: 2999, discountPercent: 50 },
   },
   {
     id: 14,
@@ -123,7 +123,7 @@ const products = [
     title: "Boys Cotton Shirt",
     category: "kids",
     rating: { value: 4.2, count: 449 },
-    price: { current: 799, mrp: 1599 },
+    price: { original: 1599, discountPercent: 50 },
   },
   {
     id: 15,
@@ -132,7 +132,7 @@ const products = [
     title: "Girls Printed Dress",
     category: "kids",
     rating: { value: 4.3, count: 618 },
-    price: { current: 899, mrp: 1799 },
+    price: { original: 1799, discountPercent: 50 },
   },
   {
     id: 16,
@@ -141,7 +141,7 @@ const products = [
     title: "Kids Party Wear Set",
     category: "kids",
     rating: { value: 4.0, count: 302 },
-    price: { current: 1099, mrp: 2199 },
+    price: { original: 2199, discountPercent: 50 },
   },
   {
     id: 17,
@@ -150,7 +150,7 @@ const products = [
     title: "Cotton Cushion Cover Set",
     category: "home",
     rating: { value: 4.1, count: 271 },
-    price: { current: 699, mrp: 1399 },
+    price: { original: 1399, discountPercent: 50 },
   },
   {
     id: 18,
@@ -159,7 +159,7 @@ const products = [
     title: "Premium Bedsheet Set",
     category: "home",
     rating: { value: 4.4, count: 903 },
-    price: { current: 1599, mrp: 3199 },
+    price: { original: 3199, discountPercent: 50 },
   },
   {
     id: 19,
@@ -168,7 +168,7 @@ const products = [
     title: "Printed Double Bedsheet",
     category: "home",
     rating: { value: 4.2, count: 676 },
-    price: { current: 999, mrp: 1999 },
+    price: { original: 1999, discountPercent: 50 },
   },
   {
     id: 20,
@@ -177,7 +177,7 @@ const products = [
     title: "Hair Dryer 1200W",
     category: "beauty",
     rating: { value: 4.3, count: 1260 },
-    price: { current: 1299, mrp: 2295 },
+    price: { original: 2295, discountPercent: 43 },
   },
   {
     id: 21,
@@ -186,7 +186,7 @@ const products = [
     title: "9 to 5 Primer + Matte",
     category: "beauty",
     rating: { value: 4.4, count: 2104 },
-    price: { current: 399, mrp: 550 },
+    price: { original: 550, discountPercent: 27 },
   },
   {
     id: 22,
@@ -195,7 +195,7 @@ const products = [
     title: "Fit Me Compact Powder",
     category: "beauty",
     rating: { value: 4.5, count: 3189 },
-    price: { current: 199, mrp: 249 },
+    price: { original: 249, discountPercent: 20 },
   },
 ];
 
