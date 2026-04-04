@@ -1,4 +1,5 @@
 let bagItemObjects = [];
+const catalog = Array.isArray(products) ? products : Array.isArray(items) ? items : [];
 
 (() => {
   if (!Array.isArray(bagItems)) {
@@ -57,10 +58,45 @@ function formatRupees(value) {
   return `Rs ${Number(value).toLocaleString("en-IN")}`;
 }
 
+function getProductId(product) {
+  return product.id ?? product.productId;
+}
+
+function getProductImage(product) {
+  return product.image ?? product.item_image;
+}
+
+function getProductBrand(product) {
+  return product.brand ?? product.company_name;
+}
+
+function getProductTitle(product) {
+  return product.title ?? product.item_name;
+}
+
+function getProductPrice(product) {
+  if (product.price) {
+    return {
+      current: product.price.current,
+      mrp: product.price.mrp,
+    };
+  }
+
+  return {
+    current: product.item_price.current_price,
+    mrp: product.item_price.original_price,
+  };
+}
+
+function getProductDiscountPercent(product) {
+  const price = getProductPrice(product);
+  return Math.round(((price.mrp - price.current) / price.mrp) * 100);
+}
+
 function loadBagItemObjects() {
   bagItemObjects = bagItems
     .map((bagEntry) => {
-      const item = items.find((singleItem) => singleItem.productId === bagEntry.productId);
+      const item = catalog.find((singleItem) => getProductId(singleItem) === bagEntry.productId);
       if (!item) {
         return null;
       }
@@ -81,16 +117,15 @@ function displayBagSummary() {
 
   const totalItems = bagItemObjects.reduce((sum, item) => sum + item.quantity, 0);
   const totalMRP = bagItemObjects.reduce(
-    (sum, item) => sum + item.item_price.original_price * item.quantity,
+    (sum, item) => sum + getProductPrice(item).mrp * item.quantity,
     0,
   );
-  const totalDiscount = bagItemObjects.reduce(
-    (sum, item) =>
-      sum + (item.item_price.original_price - item.item_price.current_price) * item.quantity,
-    0,
-  );
+  const totalDiscount = bagItemObjects.reduce((sum, item) => {
+    const price = getProductPrice(item);
+    return sum + (price.mrp - price.current) * item.quantity;
+  }, 0);
   const subtotal = bagItemObjects.reduce(
-    (sum, item) => sum + item.item_price.current_price * item.quantity,
+    (sum, item) => sum + getProductPrice(item).current * item.quantity,
     0,
   );
   const convenienceFee = totalItems > 0 ? 99 : 0;
@@ -180,29 +215,32 @@ function displayBagItem() {
 
   let bagItemsContainerInnerHtml = "";
   for (const item of bagItemObjects) {
+    const productPrice = getProductPrice(item);
+    const productDiscountPercent = getProductDiscountPercent(item);
+
     bagItemsContainerInnerHtml += `
       <div class="bag-item-container">
         <div class="bag-item-left-part">
-          <img class="bag-item-image" src="../assets/images/items/${item.item_image}" alt="${item.item_name}" />
+          <img class="bag-item-image" src="../assets/images/items/${getProductImage(item)}" alt="${getProductTitle(item)}" />
         </div>
         <div class="bag-item-right-part">
-          <div class="item-company-name">${item.company_name}</div>
-          <div class="item-name">${item.item_name}</div>
+          <div class="item-company-name">${getProductBrand(item)}</div>
+          <div class="item-name">${getProductTitle(item)}</div>
           <div class="item-price">
-            <span class="current-price">${formatRupees(item.item_price.current_price)}</span>
-            <span class="original-price">${formatRupees(item.item_price.original_price)}</span>
-            <span class="discount">(${item.item_price.discount}% OFF)</span>
+            <span class="current-price">${formatRupees(productPrice.current)}</span>
+            <span class="original-price">${formatRupees(productPrice.mrp)}</span>
+            <span class="discount">(${productDiscountPercent}% OFF)</span>
           </div>
           <div class="item-quantity-row">
-            <button class="qty-btn" onclick="decreaseQuantity(${item.productId})">-</button>
+            <button class="qty-btn" onclick="decreaseQuantity(${getProductId(item)})">-</button>
             <span class="item-quantity">Qty: ${item.quantity}</span>
-            <button class="qty-btn" onclick="increaseQuantity(${item.productId})">+</button>
+            <button class="qty-btn" onclick="increaseQuantity(${getProductId(item)})">+</button>
           </div>
-          <div class="line-total">Item Total: ${formatRupees(item.item_price.current_price * item.quantity)}</div>
+          <div class="line-total">Item Total: ${formatRupees(productPrice.current * item.quantity)}</div>
           <div class="return-period">14 days return available</div>
           <div class="delivery-details">Delivery by 13 Apr 2026</div>
         </div>
-        <div class="remove-from-cart" title="Remove" onclick="removeFromBag(${item.productId})">&times;</div>
+        <div class="remove-from-cart" title="Remove" onclick="removeFromBag(${getProductId(item)})">&times;</div>
       </div>
     `;
   }

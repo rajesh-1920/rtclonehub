@@ -1,4 +1,5 @@
 let bagItems = [];
+const catalog = Array.isArray(products) ? products : Array.isArray(items) ? items : [];
 
 (() => {
   bagItems = getStoredBagItems();
@@ -82,6 +83,55 @@ function formatReviews(reviewCount) {
   return `${reviewCount}`;
 }
 
+function getProductId(product) {
+  return product.id ?? product.productId;
+}
+
+function getProductImage(product) {
+  return product.image ?? product.item_image;
+}
+
+function getProductBrand(product) {
+  return product.brand ?? product.company_name;
+}
+
+function getProductTitle(product) {
+  return product.title ?? product.item_name;
+}
+
+function getProductPrice(product) {
+  if (product.price) {
+    return {
+      current: product.price.current,
+      mrp: product.price.mrp,
+    };
+  }
+
+  return {
+    current: product.item_price.current_price,
+    mrp: product.item_price.original_price,
+  };
+}
+
+function getProductDiscountPercent(product) {
+  const price = getProductPrice(product);
+  return Math.round(((price.mrp - price.current) / price.mrp) * 100);
+}
+
+function getProductRating(product) {
+  if (product.rating && typeof product.rating.value === "number") {
+    return {
+      value: product.rating.value,
+      count: product.rating.count,
+    };
+  }
+
+  return {
+    value: product.rating.stars,
+    count: product.rating.reviews,
+  };
+}
+
 function addToBag(productId) {
   const existingEntry = bagItems.find((entry) => entry.productId === productId);
   if (!existingEntry) {
@@ -112,17 +162,18 @@ function displayBagItemCount() {
 
 function displayHomepageContent(searchText = "") {
   const itemContainer = document.querySelector(".items-container");
-  if (!itemContainer || !Array.isArray(items)) {
+  if (!itemContainer || !Array.isArray(catalog)) {
     return;
   }
 
   const normalizedSearchText = searchText.trim().toLowerCase();
   const filteredItems = normalizedSearchText
-    ? items.filter((item) => {
-        const searchableText = `${item.company_name} ${item.item_name}`.toLowerCase();
+    ? catalog.filter((item) => {
+        const searchableText =
+          `${getProductBrand(item)} ${getProductTitle(item)} ${item.category || ""}`.toLowerCase();
         return searchableText.includes(normalizedSearchText);
       })
-    : items;
+    : catalog;
 
   if (filteredItems.length === 0) {
     itemContainer.innerHTML =
@@ -132,21 +183,26 @@ function displayHomepageContent(searchText = "") {
 
   let innerHtml = "";
   for (const item of filteredItems) {
-    const alreadyInBag = getItemQuantity(item.productId) > 0;
+    const productId = getProductId(item);
+    const productPrice = getProductPrice(item);
+    const productRating = getProductRating(item);
+    const productDiscountPercent = getProductDiscountPercent(item);
+    const alreadyInBag = getItemQuantity(productId) > 0;
+
     innerHtml += `
       <div class="item-container">
-        <img class="item-image" src="./assets/images/items/${item.item_image}" alt="${item.item_name}" />
-        <div class="item-ratings">${item.rating.stars} ★ | ${formatReviews(item.rating.reviews)} Ratings</div>
-        <div class="item-company-name">${item.company_name}</div>
-        <div class="item-name">${item.item_name}</div>
+        <img class="item-image" src="./assets/images/items/${getProductImage(item)}" alt="${getProductTitle(item)}" />
+        <div class="item-ratings">${productRating.value} ★ | ${formatReviews(productRating.count)} Ratings</div>
+        <div class="item-company-name">${getProductBrand(item)}</div>
+        <div class="item-name">${getProductTitle(item)}</div>
         <div class="item-price">
-          <span class="current-price">${formatRupees(item.item_price.current_price)}</span>
-          <span class="original-price">${formatRupees(item.item_price.original_price)}</span>
-          <span class="discount">(${item.item_price.discount}% OFF)</span>
+          <span class="current-price">${formatRupees(productPrice.current)}</span>
+          <span class="original-price">${formatRupees(productPrice.mrp)}</span>
+          <span class="discount">(${productDiscountPercent}% OFF)</span>
         </div>
         <button
           class="btn-add-to-bag ${alreadyInBag ? "in-bag" : ""}"
-          onclick="addToBag(${item.productId})"
+          onclick="addToBag(${productId})"
         >
           ${alreadyInBag ? "Added to Bag" : "Add to Bag"}
         </button>
