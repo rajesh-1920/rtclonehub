@@ -29,9 +29,7 @@ function dispalyHomepageContent() {
     return;
   }
   let innerHtml = ``;
-  let id = 1;
   for (let item of items) {
-    item.productId = id;
     innerHtml += `
         <div class="item-container">
           <img class="item-image" src="./assets/images/items/${item.item_image}" alt="item image" />
@@ -46,7 +44,6 @@ function dispalyHomepageContent() {
           <button class="btn-add-to-bag" onclick="addToBag(${item.productId})">Add to Bag</button>
         </div>
     `;
-    id++;
   }
   itemContainer.innerHTML = innerHtml;
 }
