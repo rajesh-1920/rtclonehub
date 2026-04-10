@@ -1,0 +1,19 @@
+body {
+  background: linear-gradient(180deg, #fff7ed 0%, #ffffff 28%, #f8fafc 100%);
+}
+
+.contact-hero {
+  background-image: linear-gradient(135deg, rgba(251, 146, 60, 0.16), rgba(255, 255, 255, 0.95));
+}
+
+#contactForm {
+  box-shadow: 0 10px 24px rgba(15, 23, 42, 0.06);
+}
+
+#formStatus.success {
+  color: #166534;
+}
+
+#formStatus.error {
+  color: #b91c1c;
+}
