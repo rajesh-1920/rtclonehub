@@ -16,12 +16,11 @@
   </head>
 
   <body>
-    <!-- header section -->
     <header>
       <a class="logo-container" href="../index.html">
         <img src="../assets/images/myntra_logo.webp" alt="myntra-logo" />
       </a>
-      <nav class="navbar-container">
+      <nav class="navbar-container" aria-label="Primary navigation">
         <a href="#">men</a>
         <a href="#">women</a>
         <a href="#">kids</a>
@@ -53,14 +52,26 @@
         </a>
       </div>
     </header>
-    <!-- main section -->
+
     <main>
-      <div class="bag-page">
-        <div class="bag-items-container"></div>
-        <div class="bag-summary"></div>
-      </div>
+      <section class="bag-page">
+        <div class="bag-page-header">
+          <div>
+            <p class="section-kicker">Your selection</p>
+            <h1>Shopping bag</h1>
+            <p class="section-supporting-copy">
+              Review your items, adjust quantities, and check the final total before ordering.
+            </p>
+          </div>
+          <a class="continue-shopping-link" href="../index.html">Continue shopping</a>
+        </div>
+        <div class="bag-layout">
+          <div class="bag-items-container"></div>
+          <aside class="bag-summary"></aside>
+        </div>
+      </section>
     </main>
-    <!-- footer section -->
+
     <footer>
       <div class="footer-container">
         <p>online shopping</p>

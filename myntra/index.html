@@ -15,12 +15,11 @@
   </head>
 
   <body>
-    <!-- header section -->
     <header>
       <a class="logo-container" href="./index.html">
         <img src="./assets/images/myntra_logo.webp" alt="myntra-logo" />
       </a>
-      <nav class="navbar-container">
+      <nav class="navbar-container" aria-label="Primary navigation">
         <a href="#">men</a>
         <a href="#">women</a>
         <a href="#">kids</a>
@@ -52,14 +51,78 @@
         </a>
       </div>
     </header>
-    <!-- main section -->
+
     <main>
-      <div class="hero-container">
-        <img src="./assets/images/banner.jpg" alt="banner-image" />
-      </div>
-      <div class="items-container"></div>
+      <section class="hero-container">
+        <div class="hero-copy">
+          <p class="hero-eyebrow">The Myntra Edit</p>
+          <h1>Build a sharper everyday wardrobe.</h1>
+          <p class="hero-description">
+            Discover trending styles, smarter essentials, and fast-moving drops curated for every
+            moment of the week.
+          </p>
+          <div class="hero-actions">
+            <a class="hero-primary-link" href="#shop-now">Shop now</a>
+            <a class="hero-secondary-link" href="#categories">Browse categories</a>
+          </div>
+          <div class="hero-highlights">
+            <div>
+              <strong>22k+</strong>
+              <span>curated styles</span>
+            </div>
+            <div>
+              <strong>7-day</strong>
+              <span>easy returns</span>
+            </div>
+            <div>
+              <strong>Free</strong>
+              <span>shipping on orders</span>
+            </div>
+          </div>
+        </div>
+        <div class="hero-visual">
+          <img src="./assets/images/banner.jpg" alt="Myntra shopping banner" />
+        </div>
+      </section>
+
+      <section class="storefront-toolbar" id="categories">
+        <div>
+          <p class="section-kicker">Shop the season</p>
+          <h2>Fresh arrivals across every category</h2>
+          <p class="section-supporting-copy">
+            Filter the collection quickly, search by brand, and move straight to what matters.
+          </p>
+        </div>
+        <div class="toolbar-summary">
+          <span class="toolbar-summary-label">Live catalog</span>
+          <strong class="toolbar-summary-count">22 styles</strong>
+        </div>
+      </section>
+
+      <section class="category-strip" aria-label="Product categories">
+        <button class="category-chip active" type="button" data-category="all">All</button>
+        <button class="category-chip" type="button" data-category="men">Men</button>
+        <button class="category-chip" type="button" data-category="women">Women</button>
+        <button class="category-chip" type="button" data-category="kids">Kids</button>
+        <button class="category-chip" type="button" data-category="home">Home</button>
+        <button class="category-chip" type="button" data-category="beauty">Beauty</button>
+      </section>
+
+      <section class="items-section" id="shop-now">
+        <div class="items-header">
+          <div>
+            <p class="section-kicker">Curated selection</p>
+            <h2>Trending products</h2>
+          </div>
+          <div class="items-meta">
+            <span class="items-count">0 styles</span>
+            <span class="items-note">Search and category filters update instantly</span>
+          </div>
+        </div>
+        <div class="items-container"></div>
+      </section>
     </main>
-    <!-- footer section -->
+
     <footer>
       <div class="footer-container">
         <p>online shopping</p>

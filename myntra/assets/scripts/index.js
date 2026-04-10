@@ -1,4 +1,6 @@
 let bagItems = [];
+let activeCategory = "all";
+let searchAnchorScrollY = null;
 const catalog =
   typeof products !== "undefined" && Array.isArray(products)
     ? products
@@ -13,6 +15,7 @@ const catalog =
   }
   displayBagItemCount();
   setupSearch();
+  setupCategoryFilters();
   displayHomepageContent();
 })();
 
@@ -26,7 +29,7 @@ function normalizeBagItems(rawBagItems) {
       typeof entry === "object" &&
       Number.isInteger(entry.productId) &&
       Number.isInteger(entry.quantity) &&
-      entry.quantity > 0
+      entry.quantity > 0,
   );
 }
 
@@ -41,7 +44,66 @@ function setupSearch() {
   }
 
   searchInput.addEventListener("input", () => {
-    displayHomepageContent(searchInput.value);
+    const currentSearchText = searchInput.value || "";
+    toggleSearchResultsMode(currentSearchText);
+    displayHomepageContent(currentSearchText);
+  });
+
+  toggleSearchResultsMode(searchInput.value || "");
+}
+
+function toggleSearchResultsMode(searchText) {
+  const itemsSection = document.querySelector(".items-section");
+  if (!itemsSection) {
+    return;
+  }
+
+  const isSearchActive = Boolean(searchText.trim());
+
+  if (isSearchActive) {
+    if (searchAnchorScrollY === null) {
+      searchAnchorScrollY = window.scrollY;
+    }
+
+    document.body.classList.add("search-active");
+    scrollSearchResultsIntoView(itemsSection);
+    return;
+  }
+
+  document.body.classList.remove("search-active");
+
+  if (searchAnchorScrollY !== null) {
+    window.scrollTo({ top: searchAnchorScrollY, behavior: "auto" });
+    searchAnchorScrollY = null;
+  }
+}
+
+function scrollSearchResultsIntoView(itemsSection) {
+  const header = document.querySelector("header");
+  const headerHeight = header ? header.offsetHeight : 0;
+  const sectionTop = itemsSection.getBoundingClientRect().top + window.scrollY;
+  const targetTop = Math.max(0, sectionTop - headerHeight - 8);
+  const isAlreadyVisible = window.scrollY <= targetTop + 8;
+
+  if (isAlreadyVisible) {
+    return;
+  }
+
+  window.scrollTo({ top: targetTop, behavior: "smooth" });
+}
+
+function setupCategoryFilters() {
+  const categoryButtons = document.querySelectorAll(".category-chip");
+  if (!categoryButtons.length) {
+    return;
+  }
+
+  categoryButtons.forEach((button) => {
+    button.addEventListener("click", () => {
+      activeCategory = button.dataset.category || "all";
+      categoryButtons.forEach((chip) => chip.classList.toggle("active", chip === button));
+      displayHomepageContent();
+    });
   });
 }
 
@@ -86,22 +148,33 @@ function displayBagItemCount() {
 
 function displayHomepageContent(searchText = "") {
   const itemContainer = document.querySelector(".items-container");
+  const itemsCountElement = document.querySelector(".items-count");
+  const toolbarSummaryCount = document.querySelector(".toolbar-summary-count");
   if (!itemContainer || !Array.isArray(catalog)) {
     return;
   }
 
   const normalizedSearchText = searchText.trim().toLowerCase();
-  const filteredItems = normalizedSearchText
-    ? catalog.filter((item) => {
-        const searchableText =
-          `${item.brand} ${item.title} ${item.category || ""}`.toLowerCase();
-        return searchableText.includes(normalizedSearchText);
-      })
-    : catalog;
+  const filteredItems = catalog.filter((item) => {
+    const searchableText = `${item.brand} ${item.title} ${item.category || ""}`.toLowerCase();
+    const matchesSearch = normalizedSearchText
+      ? searchableText.includes(normalizedSearchText)
+      : true;
+    const matchesCategory = activeCategory === "all" ? true : item.category === activeCategory;
+    return matchesSearch && matchesCategory;
+  });
+
+  if (itemsCountElement) {
+    itemsCountElement.innerText = `${filteredItems.length} style${filteredItems.length === 1 ? "" : "s"}`;
+  }
+
+  if (toolbarSummaryCount) {
+    toolbarSummaryCount.innerText = `${filteredItems.length} style${filteredItems.length === 1 ? "" : "s"}`;
+  }
 
   if (filteredItems.length === 0) {
     itemContainer.innerHTML =
-      "<p class='empty-results'>No products found. Try a different search.</p>";
+      "<p class='empty-results'>No products match this search. Try another keyword or category.</p>";
     return;
   }
 
@@ -115,17 +188,19 @@ function displayHomepageContent(searchText = "") {
     innerHtml += `
       <div class="item-container">
         <img class="item-image" src="./assets/images/items/${item.image}" alt="${item.title}" />
-        <div class="item-ratings">${productRating.value} ★ | ${formatReviews(productRating.count)} Ratings</div>
-        <div class="item-company-name">${item.brand}</div>
-        <div class="item-name">${item.title}</div>
-        <div class="item-price">
-          <span class="current-price">${formatRupees(productPrice.current)}</span>
-          <span class="original-price">${formatRupees(productPrice.mrp)}</span>
-          <span class="discount">(${productDiscountPercent}% OFF)</span>
+        <div class="item-rating-badge">${productRating.value} ★ • ${formatReviews(productRating.count)} reviews</div>
+        <div class="item-content">
+          <div class="item-company-name">${item.brand}</div>
+          <div class="item-name">${item.title}</div>
+          <div class="item-price">
+            <span class="current-price">${formatRupees(productPrice.current)}</span>
+            <span class="original-price">${formatRupees(productPrice.mrp)}</span>
+            <span class="discount">(${productDiscountPercent}% OFF)</span>
+          </div>
+          <button class="btn-add-to-bag ${alreadyInBag ? "in-bag" : ""}" onclick="addToBag(${item.id})">
+            ${alreadyInBag ? "Added to Bag" : "Add to Bag"}
+          </button>
         </div>
-        <button class="btn-add-to-bag ${alreadyInBag ? "in-bag" : ""}" onclick="addToBag(${item.id})">
-          ${alreadyInBag ? "Added to Bag" : "Add to Bag"}
-        </button>
       </div>
     `;
   }
@@ -157,4 +232,3 @@ function getProductPrice(product) {
   const current = Math.ceil(mrp * (1 - discountPercent / 100));
   return { current, mrp };
 }
-

@@ -1,4 +1,5 @@
 let bagItemObjects = [];
+const freeShippingThreshold = 999;
 
 (() => {
   bagItems = getStoredBagItems();
@@ -44,6 +45,11 @@ function displayBagSummary() {
   );
   const convenienceFee = totalItems > 0 ? 99 : 0;
   const totalAmount = subtotal + convenienceFee;
+  const shippingGap = Math.max(0, freeShippingThreshold - subtotal);
+  const summaryNote =
+    shippingGap > 0
+      ? `${formatRupees(shippingGap)} more to unlock free shipping on eligible orders.`
+      : "You have unlocked free shipping for this order.";
 
   bagSummaryElement.innerHTML = `
     <div class="bag-details-container">
@@ -65,6 +71,7 @@ function displayBagSummary() {
         <span class="price-item-value">${formatRupees(totalAmount)}</span>
       </div>
     </div>
+    <div class="bag-summary-note">${summaryNote}</div>
     <button class="btn-place-order">PLACE ORDER</button>
   `;
 }
@@ -123,7 +130,7 @@ function displayBagItem() {
   }
 
   if (bagItemObjects.length === 0) {
-    containerElement.innerHTML = `<div class="empty-bag">Your bag is empty. Add items from home page.</div>`;
+    containerElement.innerHTML = `<div class="empty-bag">Your bag is empty.<br /><a href="../index.html">Start shopping</a></div>`;
     return;
   }
 
@@ -131,6 +138,7 @@ function displayBagItem() {
   for (const item of bagItemObjects) {
     const productPrice = getProductPrice(item);
     const productDiscountPercent = getProductDiscountPercent(item);
+    const deliveryLabel = getDeliveryLabel(3);
 
     bagItemsContainerInnerHtml += `
       <div class="bag-item-container">
@@ -152,7 +160,7 @@ function displayBagItem() {
           </div>
           <div class="line-total">Item Total: ${formatRupees(productPrice.current * item.quantity)}</div>
           <div class="return-period">14 days return available</div>
-          <div class="delivery-details">Delivery by 13 Apr 2026</div>
+          <div class="delivery-details">${deliveryLabel}</div>
         </div>
         <div class="remove-from-cart" title="Remove" onclick="removeFromBag(${item.id})">&times;</div>
       </div>
@@ -160,4 +168,15 @@ function displayBagItem() {
   }
 
   containerElement.innerHTML = bagItemsContainerInnerHtml;
+}
+
+function getDeliveryLabel(daysAhead) {
+  const deliveryDate = new Date();
+  deliveryDate.setDate(deliveryDate.getDate() + daysAhead);
+  const formattedDate = deliveryDate.toLocaleDateString("en-IN", {
+    day: "numeric",
+    month: "short",
+  });
+
+  return `Delivery by ${formattedDate}`;
 }
