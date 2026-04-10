@@ -1,5 +1,3 @@
-window.RTHub.setupMobileNav();
-
 const contactForm = document.getElementById("contactForm");
 const formStatus = document.getElementById("formStatus");
 
