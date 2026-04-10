@@ -6,7 +6,9 @@
     <meta name="description" content="Contact page for RT Clone Hub." />
     <title>Contact - RT Clone Hub</title>
 
+    <script src="../assets/js/tailwind-config.js"></script>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="../assets/css/theme.css" />
     <link rel="stylesheet" href="../assets/css/contact.css" />
   </head>
   <body class="text-slate-800">
@@ -15,7 +17,7 @@
         class="mx-auto flex max-w-6xl items-center justify-between px-4 py-3 sm:px-6"
         aria-label="Main navigation"
       >
-        <a href="../index.html" class="text-xl font-bold tracking-wide text-orange-700"
+        <a href="../index.html" class="brand-title text-xl font-bold tracking-wide text-brand-700"
           >RT Clone Hub</a
         >
         <button
@@ -26,20 +28,20 @@
           Menu
         </button>
         <ul id="navMenu" class="hidden gap-6 text-sm font-semibold md:flex">
-          <li><a href="../index.html" class="hover:text-orange-600">Home</a></li>
-          <li><a href="clones.html" class="hover:text-orange-600">Clones</a></li>
-          <li><a href="about.html" class="hover:text-orange-600">About</a></li>
-          <li><a href="contact.html" class="text-orange-700">Contact</a></li>
+          <li><a href="../index.html" class="hover:text-brand-600">Home</a></li>
+          <li><a href="clones.html" class="hover:text-brand-600">Clones</a></li>
+          <li><a href="about.html" class="hover:text-brand-600">About</a></li>
+          <li><a href="contact.html" class="text-brand-700">Contact</a></li>
         </ul>
       </nav>
       <ul
         id="mobileNav"
         class="hidden space-y-2 border-t border-slate-200 px-4 py-3 text-sm font-semibold md:hidden"
       >
-        <li><a href="../index.html" class="block hover:text-orange-600">Home</a></li>
-        <li><a href="clones.html" class="block hover:text-orange-600">Clones</a></li>
-        <li><a href="about.html" class="block hover:text-orange-600">About</a></li>
-        <li><a href="contact.html" class="block text-orange-700">Contact</a></li>
+        <li><a href="../index.html" class="block hover:text-brand-600">Home</a></li>
+        <li><a href="clones.html" class="block hover:text-brand-600">Clones</a></li>
+        <li><a href="about.html" class="block hover:text-brand-600">About</a></li>
+        <li><a href="contact.html" class="block text-brand-700">Contact</a></li>
       </ul>
     </header>
 
@@ -64,7 +66,7 @@
               id="name"
               name="name"
               type="text"
-              class="w-full rounded-md border border-slate-300 px-3 py-2 outline-none focus:border-orange-500"
+              class="w-full rounded-md border border-slate-300 px-3 py-2 outline-none focus:border-brand-500"
               required
             />
           </div>
@@ -74,7 +76,7 @@
               id="email"
               name="email"
               type="email"
-              class="w-full rounded-md border border-slate-300 px-3 py-2 outline-none focus:border-orange-500"
+              class="w-full rounded-md border border-slate-300 px-3 py-2 outline-none focus:border-brand-500"
               required
             />
           </div>
@@ -84,13 +86,13 @@
               id="message"
               name="message"
               rows="5"
-              class="w-full rounded-md border border-slate-300 px-3 py-2 outline-none focus:border-orange-500"
+              class="w-full rounded-md border border-slate-300 px-3 py-2 outline-none focus:border-brand-500"
               required
             ></textarea>
           </div>
           <button
             type="submit"
-            class="rounded-md bg-orange-600 px-5 py-2 text-sm font-bold text-white hover:bg-orange-700"
+            class="rounded-md bg-brand-600 px-5 py-2 text-sm font-bold text-white hover:bg-brand-700"
           >
             Send Message
           </button>

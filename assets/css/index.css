@@ -1,14 +1,19 @@
-body {
-  background: radial-gradient(circle at top right, #ffedd5 0%, #fff 45%, #f8fafc 100%);
-}
-
 .hero-bg {
   position: relative;
 }
 
+.hero-bg::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 15% 25%, rgba(15, 118, 110, 0.14), transparent 46%),
+    radial-gradient(circle at 80% 0, rgba(217, 119, 6, 0.2), transparent 32%);
+  pointer-events: none;
+}
+
 .hero-card {
-  background: linear-gradient(140deg, #fff7ed 0%, #ffffff 40%, #f1f5f9 100%);
-  border: 1px solid #e2e8f0;
+  background: linear-gradient(140deg, #f0fdfa 0%, #ffffff 44%, #f8fafc 100%);
 }
 
 .dot {
@@ -19,19 +24,17 @@ body {
 }
 
 .clone-card {
-  background: #ffffff;
-  border: 1px solid #e2e8f0;
   border-radius: 0.9rem;
   padding: 1.2rem;
-  box-shadow: 0 6px 20px rgba(15, 23, 42, 0.05);
-  transition:
-    transform 0.2s ease,
-    box-shadow 0.2s ease;
+  animation: cardRise 0.6s ease both;
 }
 
-.clone-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 14px 26px rgba(15, 23, 42, 0.1);
+.clone-card:nth-child(2) {
+  animation-delay: 0.08s;
+}
+
+.clone-card:nth-child(3) {
+  animation-delay: 0.16s;
 }
 
 .badge {
@@ -55,4 +58,16 @@ body {
 .badge.planned {
   background: #fee2e2;
   color: #9f1239;
+}
+
+@keyframes cardRise {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }

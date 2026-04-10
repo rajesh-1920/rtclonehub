@@ -6,26 +6,9 @@
     <meta name="description" content="RT Clone Hub - A collection of website clone projects." />
     <title>RT Clone Hub</title>
 
+    <script src="assets/js/tailwind-config.js"></script>
     <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-      tailwind.config = {
-        theme: {
-          extend: {
-            colors: {
-              brand: {
-                50: "#fff7ed",
-                100: "#ffedd5",
-                200: "#fed7aa",
-                500: "#f97316",
-                600: "#ea580c",
-                700: "#c2410c",
-              },
-            },
-          },
-        },
-      };
-    </script>
-
+    <link rel="stylesheet" href="assets/css/theme.css" />
     <link rel="stylesheet" href="assets/css/index.css" />
   </head>
   <body class="text-slate-800">
@@ -34,7 +17,9 @@
         class="mx-auto flex max-w-6xl items-center justify-between px-4 py-3 sm:px-6"
         aria-label="Main navigation"
       >
-        <a href="index.html" class="text-xl font-bold tracking-wide text-brand-700">RT Clone Hub</a>
+        <a href="index.html" class="brand-title text-xl font-bold tracking-wide text-brand-700"
+          >RT Clone Hub</a
+        >
 
         <button
           id="menuBtn"
