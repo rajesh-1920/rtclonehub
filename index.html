@@ -17,7 +17,7 @@
     <main>
       <section class="hero-bg overflow-hidden">
         <div
-          class="mx-auto grid max-w-6xl gap-10 px-4 py-16 sm:px-6 md:grid-cols-2 md:items-center md:py-20"
+          class="mx-auto grid max-w-6xl gap-10 px-4 py-16 sm:px-6 md:grid-cols-[1.35fr_0.9fr] md:items-center md:py-20"
         >
           <div>
             <p
@@ -33,16 +33,23 @@
               full stack skills.
             </p>
             <div class="flex flex-wrap gap-3">
-              <a
-                href="pages/clones.html"
-                class="rounded-md bg-brand-600 px-5 py-3 text-sm font-bold text-white hover:bg-brand-700"
-                >Explore Clones</a
-              >
-              <a
-                href="pages/about.html"
-                class="rounded-md border border-slate-300 bg-white px-5 py-3 text-sm font-bold hover:bg-slate-100"
-                >About Me</a
-              >
+              <a href="pages/clones.html" class="hero-btn hero-btn-primary">Explore Clones</a>
+              <a href="pages/about.html" class="hero-btn hero-btn-secondary">About Me</a>
+            </div>
+
+            <div class="mt-8 grid gap-4 sm:grid-cols-3">
+              <article class="metric-card rounded-xl p-4">
+                <p class="metric-label">Clone Projects</p>
+                <p class="metric-value"><span class="count" data-count="3">0</span>+</p>
+              </article>
+              <article class="metric-card rounded-xl p-4">
+                <p class="metric-label">Pages Included</p>
+                <p class="metric-value"><span class="count" data-count="4">0</span></p>
+              </article>
+              <article class="metric-card rounded-xl p-4">
+                <p class="metric-label">Focus</p>
+                <p class="metric-value metric-value-focus">Consistency</p>
+              </article>
             </div>
           </div>
 
@@ -66,6 +73,34 @@
         </div>
       </section>
 
+      <section class="mx-auto max-w-6xl px-4 pb-4 sm:px-6">
+        <div class="info-strip grid gap-4 rounded-2xl p-5 md:grid-cols-3">
+          <article>
+            <p class="info-kicker">Purpose</p>
+            <h2 class="mt-1 text-lg font-bold text-slate-900">A learning hub for clone projects</h2>
+            <p class="mt-2 text-sm text-slate-600">
+              I use this site to organize frontend practice, track progress, and present my work in
+              one place.
+            </p>
+          </article>
+          <article>
+            <p class="info-kicker">Method</p>
+            <h2 class="mt-1 text-lg font-bold text-slate-900">Build, review, refactor</h2>
+            <p class="mt-2 text-sm text-slate-600">
+              Each clone is developed in small steps so I can improve structure, design, and code
+              quality continuously.
+            </p>
+          </article>
+          <article>
+            <p class="info-kicker">Outcome</p>
+            <h2 class="mt-1 text-lg font-bold text-slate-900">Cleaner and more scalable code</h2>
+            <p class="mt-2 text-sm text-slate-600">
+              Shared components, better styling, and reusable logic make the project easier to grow.
+            </p>
+          </article>
+        </div>
+      </section>
+
       <section class="mx-auto max-w-6xl px-4 py-14 sm:px-6">
         <div class="mb-8 flex items-center justify-between gap-4">
           <h2 class="text-2xl font-extrabold text-slate-900 sm:text-3xl">Featured Clones</h2>
@@ -76,6 +111,51 @@
         <div id="cloneGrid" class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3"></div>
       </section>
 
+      <section class="mx-auto max-w-6xl px-4 py-4 sm:px-6">
+        <div class="grid gap-6 lg:grid-cols-2">
+          <article class="card rounded-2xl p-6 reveal-item">
+            <h2 class="mb-4 text-2xl font-bold text-slate-900">How I Work</h2>
+            <ol class="space-y-3 text-sm text-slate-600">
+              <li>
+                <span class="step-index">01</span> Study the layout and identify reusable sections
+              </li>
+              <li>
+                <span class="step-index">02</span> Build semantic structure and responsive grids
+              </li>
+              <li>
+                <span class="step-index">03</span> Add Tailwind styling and custom theme polish
+              </li>
+              <li>
+                <span class="step-index">04</span> Implement JavaScript for interactivity and shared
+                logic
+              </li>
+              <li><span class="step-index">05</span> Refactor common parts into shared files</li>
+            </ol>
+          </article>
+
+          <article class="card rounded-2xl p-6 reveal-item">
+            <h2 class="mb-4 text-2xl font-bold text-slate-900">What This Hub Shows</h2>
+            <ul class="space-y-3 text-sm text-slate-600">
+              <li class="flex gap-3">
+                <span class="check-dot"></span> Home page with project overview
+              </li>
+              <li class="flex gap-3">
+                <span class="check-dot"></span> Dedicated clones page with project cards
+              </li>
+              <li class="flex gap-3">
+                <span class="check-dot"></span> About page for learning journey and roadmap
+              </li>
+              <li class="flex gap-3">
+                <span class="check-dot"></span> Contact page with form and project inquiries
+              </li>
+              <li class="flex gap-3">
+                <span class="check-dot"></span> Shared navbar and clone data for maintainability
+              </li>
+            </ul>
+          </article>
+        </div>
+      </section>
+
       <section class="border-y border-slate-200 bg-white">
         <div class="mx-auto max-w-6xl px-4 py-14 sm:px-6">
           <h2 class="mb-5 text-2xl font-extrabold text-slate-900 sm:text-3xl">About This Hub</h2>
@@ -84,6 +164,49 @@
             focused on real-world UI, structure, and JavaScript logic. I improve each clone
             step-by-step with better code quality and cleaner design.
           </p>
+        </div>
+      </section>
+
+      <section class="mx-auto max-w-6xl px-4 py-14 sm:px-6">
+        <div class="roadmap-panel rounded-2xl p-7 md:p-9 reveal-item">
+          <div class="flex flex-col gap-5 md:flex-row md:items-end md:justify-between">
+            <div>
+              <p class="section-kicker">Roadmap</p>
+              <h2 class="mt-2 text-2xl font-extrabold text-slate-900 sm:text-3xl">
+                What I plan to add next
+              </h2>
+              <p class="mt-3 max-w-3xl text-sm leading-7 text-slate-600">
+                This hub will keep evolving as I learn backend development, improve project
+                organization, and create more realistic clone experiences.
+              </p>
+            </div>
+            <a
+              href="pages/contact.html"
+              class="inline-flex items-center rounded-lg bg-brand-600 px-5 py-3 text-sm font-bold text-white hover:bg-brand-700"
+              >Let’s Connect</a
+            >
+          </div>
+
+          <div class="mt-6 grid gap-4 md:grid-cols-3">
+            <article class="roadmap-card rounded-xl p-5">
+              <h3 class="mb-2 text-base font-bold text-slate-900">1. More clone projects</h3>
+              <p class="text-sm text-slate-600">
+                Add new real-world UI clones and keep organizing them in one hub.
+              </p>
+            </article>
+            <article class="roadmap-card rounded-xl p-5">
+              <h3 class="mb-2 text-base font-bold text-slate-900">2. Better project filtering</h3>
+              <p class="text-sm text-slate-600">
+                Group projects by status, category, or technology stack.
+              </p>
+            </article>
+            <article class="roadmap-card rounded-xl p-5">
+              <h3 class="mb-2 text-base font-bold text-slate-900">3. Backend integration</h3>
+              <p class="text-sm text-slate-600">
+                Connect forms and project data to a real backend later.
+              </p>
+            </article>
+          </div>
         </div>
       </section>
     </main>
