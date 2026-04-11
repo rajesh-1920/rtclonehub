@@ -114,7 +114,7 @@ window.RTHub.renderCloneCards = function renderCloneCards(containerId, basePath 
           </div>
           <h3 class="mb-2 text-xl font-bold text-slate-900">${project.name}</h3>
           <p class="mb-4 text-sm text-slate-600">${project.description}</p>
-          <a href="${basePath}${project.path}" class="card-link">${buttonText}</a>
+          <a href="${basePath}${project.path}" class="card-link" target="_blank">${buttonText}</a>
         </article>
       `;
     })
